@@ -4,8 +4,11 @@ import type { StudentData } from './types';
 import './App.css';
 import CredentialCard from './CredentialCard';
 
+const urlParams = new URLSearchParams(window.location.search);
+const deviceId = urlParams.get('device_id') || 'pantalla_desconocida';
+
 const BACKOFFICE_URL = 'https://caloi-app.amr-dev.com/privacy';
-const WS_URL = 'ws://localhost:8080/ws';
+const WS_URL = `ws://192.168.88.20:8080/ws?device_id=${deviceId}`;
 
 function App(): JSX.Element {
   const [student, setStudent] = useState<StudentData | null>(null);
@@ -57,6 +60,7 @@ function App(): JSX.Element {
     };
   }, []);
 
+/*
   useEffect(() => {
     const timer = setTimeout(() => {
       setStudent({
@@ -73,7 +77,7 @@ function App(): JSX.Element {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
-
+*/
 
   return (
     <div className="app">
